@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 
 class EmployeeList extends Component {
-  
-
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.routeChange = this.routeChange.bind(this);
 
     this.state = {
       items: [],
       DataisLoaded: false,
-     
     };
   }
   routeChange() {
@@ -438,8 +435,6 @@ class EmployeeList extends Component {
           </aside>
 
           <main id="main" class="main">
-         
-
             <section class="section">
               <div class="row">
                 <div class="col-lg-12">
@@ -450,8 +445,6 @@ class EmployeeList extends Component {
                         type="button"
                         className="btn btn-dark "
                         onClick={this.routeChange}
-                        
-
                         style={{ float: "right" }}
                       >
                         Add Employee
