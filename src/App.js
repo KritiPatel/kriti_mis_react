@@ -9,6 +9,7 @@ import Registerpage from "./Component/pages-register";
 import Profilepage from "./Component/pages-profile";
 import EmployeeList from "./Component/pages-employeeList"
 import AddEmployee from "./Component/pages-AddEmployee";
+import  UpdateEmployee from "./Component/pages-UpdateEmployee"
 
 
 // import ‘./App.css’;
@@ -54,7 +55,10 @@ function App() {
         </Switch> 
         <Switch>
       <Route exact path="/AddEmp" component={AddEmployee} />
-        </Switch>    
+        </Switch>  
+        <Switch>
+      <Route exact path="/UpdateEmp" component={UpdateEmployee} />
+        </Switch>   
       </Router>
       
   
