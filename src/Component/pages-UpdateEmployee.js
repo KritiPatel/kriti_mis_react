@@ -358,6 +358,7 @@ class UpdateEmployee extends Component {
 
   componentDidMount() {
     const dataAll = this.props.history.location.state.data;
+
   }
 
   handleChange = (data) => {
@@ -366,8 +367,39 @@ class UpdateEmployee extends Component {
       [data.target.name]: data.target.value,
     });
   };
+
+  apicall = (e) => {
+    e.preventDefault();
+
+    alert(this.state.firstName);
+
+    const apiUrl = "http://localhost:5000/admin/add_employee";
+    fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+      }),
+    })
+      .then((response) => response.json())
+
+      .then((res) => {
+        console.log(res);
+        console.log(res.firstName);
+        this.setState({
+          items: res.data,
+          DataisLoaded: true,
+        });
+        // ,
+        // []
+      });
+  };
+
+
   render() {
-    const { firstName, lastName, email, apicall, item } = this.state;
+    const { firstName, lastName, email, apicall, item ,} = this.state;
 
     return (
       <>
@@ -441,6 +473,8 @@ class UpdateEmployee extends Component {
                           className="row g-3 needs-validation"
                           noValidate
                           method="post"
+                          onSubmit={this.apicall}
+
                           // onSubmit={this.get_data}
                         >
                           {/* onSubmit={handleSubmit} */}
@@ -542,6 +576,7 @@ class UpdateEmployee extends Component {
                               // onClick={this.apicall}
                               className="btn btn-primary w-100"
                               type="submit"
+                              onClick={this.apicall}
                               //  onClick={this.get_data}
                               // onClick={this.get_detail.bind(this, item._id)}
                             >

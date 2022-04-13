@@ -37,11 +37,6 @@ class EmployeeList extends Component {
   }
 
   get_emp = (id, empId,res) => {
-    
-  
-  
-
-
     // const apiUrl = "http://localhost:5000/get_employeesdetail";
     // console.log("Helloo edit d" + id);
     fetch(`http://localhost:5000/admin/get_emp_detail?empId=${id}`, {
