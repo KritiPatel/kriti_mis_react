@@ -69,7 +69,7 @@ class EmployeeList extends Component {
   };
 
   delete_emp = (id, _id) => {
-    alert("Helloo delete " + id);
+    // alert("Helloo delete " + id);
     console.log(id);
     fetch(`http://localhost:5000/admin/delete_employee`, {
       method: "POST",
@@ -89,9 +89,14 @@ class EmployeeList extends Component {
           items: res.data,
           // DataisLoaded: true,
         });
+        
         // ,
         // []
+        
+
       });
+      let path = "emplist";
+      this.props.history.push(path);
   };
 
   render() {
