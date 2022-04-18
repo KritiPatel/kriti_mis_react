@@ -1,5 +1,7 @@
 import React, { Component, useState } from "react";
 import { Button } from "react-bootstrap";
+import Header from "./header";
+import Sidebar from "./sidebar";
 
 class AddEmployee extends Component {
   constructor(props) {
@@ -139,6 +141,10 @@ class AddEmployee extends Component {
           <link href="assets/css/style.css" rel="stylesheet" />
         </div>
 
+<Header>
+
+</Header>
+<Sidebar></Sidebar>
         <main>
           <div className="container">
             <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">

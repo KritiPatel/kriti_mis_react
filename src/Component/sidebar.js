@@ -20,28 +20,24 @@ class Sidebar extends Component {
 
               <li class="nav-item">
                 <NavLink class="nav-link" to="/pages-profile">
-                  Profile
+                <i className="bi bi-person"></i>
+                <span>Profile</span>
+                  
                 </NavLink>
-
-                {/* <a class="nav-link collapsed" href="users-profile.html">
-      <i class="bi bi-person"></i>
-      <span>Profile</span>
-    </a> */}
-              </li>
+            </li>
 
               <li class="nav-item">
                 <NavLink class="nav-link" to="/pages-faq">
-                  F.A.Q
+                <i class="bi bi-question-circle"></i>
+      <span>F.A.Q</span> 
+                  
                 </NavLink>
-                {/* <a class="nav-link collapsed" href="pages-faq.html">
-      <i class="bi bi-question-circle"></i>
-      <span>F.A.Q</span> */}
-                {/* </a> */}
               </li>
 
               <li class="nav-item">
                 <NavLink class="nav-link" to="/pages-contact">
-                  Contact
+                <i class="bi bi-envelope"></i>
+      <span>Contact</span>
                 </NavLink>
                 {/* <a class="nav-link collapsed" href="pages-contact.html">
       <i class="bi bi-envelope"></i>
@@ -51,7 +47,8 @@ class Sidebar extends Component {
 
               <li class="nav-item">
                 <NavLink class="nav-link" to="/pages-register">
-                  Register
+                <i class="bi bi-card-list"></i>
+      <span>Register</span>
                 </NavLink>
                 {/* <a class="nav-link collapsed" href="pages-register.html">
       <i class="bi bi-card-list"></i>
@@ -60,8 +57,9 @@ class Sidebar extends Component {
               </li>
 
               <li class="nav-item">
-                <NavLink class="nav-link" to="/login">
-                  Login
+                <NavLink class="nav-link" to="/">
+                <i class="bi bi-box-arrow-in-right"></i>
+      <span>Login</span>
                 </NavLink>
                 {/* <a class="nav-link collapsed" href="pages-login.html">
       <i class="bi bi-box-arrow-in-right"></i>
@@ -75,19 +73,21 @@ class Sidebar extends Component {
       <span>Error 404</span>
     </a> */}
                 <NavLink class="nav-link" to="/pages-error">
-                  Error 404
+                <i class="bi bi-dash-circle"></i>
+      <span>Error 404</span>
                 </NavLink>
               </li>
 
-              <li class="nav-item">
+              {/* <li class="nav-item"> */}
                 {/* <a class="nav-link collapsed" href="pages-blank.html">
       <i class="bi bi-file-earmark"></i>
       <span>Blank</span>
     </a> */}
-                <NavLink class="nav-link" to="/pages-blank">
-                  Blank
+                {/* <NavLink class="nav-link" to="/pages-blank">
+                <i class="bi bi-file-earmark"></i>
+      <span>Blank</span>
                 </NavLink>
-              </li>
+              </li> */}
 
               <li class="nav-item">
                 {/* <a class="nav-link collapsed" href="pages-blank.html">
@@ -95,7 +95,8 @@ class Sidebar extends Component {
       <span>Blank</span>
     </a> */}
                 <NavLink class="nav-link" to="/emplist">
-                  EmployeeList
+                <i class="bi bi-file-earmark"></i>
+      <span>EmployeeList</span>
                 </NavLink>
               </li>
             </ul>

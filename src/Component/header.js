@@ -1,8 +1,29 @@
 import React, { Component } from "react";
 
 class Header extends Component {
+ 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      firstName: "",
+      lastName:"",
+      
+      items: [],
+    };
+  }
+
   render() {
-    return (
+  // console.log(JSON.parse(localStorage.getItem('userobject')))
+var object = JSON.parse(localStorage.getItem('userobject'))
+// console.log(object.firstName)
+const {firstName,lastName} = this.state
+
+
+  return (
+
+
+
         <div>
         <div>Header</div>
         <div class="headerLink">
@@ -39,7 +60,7 @@ class Header extends Component {
 <div class="d-flex align-items-center justify-content-between">
   <a href="index.html" class="logo d-flex align-items-center">
     <img src="assets/img/logo.png" alt=""/>
-    <span class="d-none d-lg-block">NiceAdmin</span>
+    <span class="d-none d-lg-block">Moweb MIS</span>
   </a>
   <i class="bi bi-list toggle-sidebar-btn"></i>
 </div>
@@ -60,7 +81,7 @@ class Header extends Component {
           </a>
         </li>
 
-        <li class="nav-item dropdown">
+        {/* <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
@@ -197,15 +218,22 @@ class Header extends Component {
               <a href="#">Show all messages</a>
             </li>
             </ul>
-</li>
+</li> */}
+
+{/* //dropdown */}
+{/* mapping name from database  */}
+
+
 <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"/>
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{object.firstName}  {object.lastName}</span>
           </a>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+
+          {/* <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>Kevin Anderson</h6>
               <span>Web Designer</span>
@@ -251,7 +279,7 @@ class Header extends Component {
               </a>
             </li>
 
-          </ul>
+          </ul> */}
         </li>
 
       </ul>

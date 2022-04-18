@@ -41,7 +41,7 @@ class Login extends Component {
 
     
 
-    // alert("login api called")
+ // alert("login api called")
     console.log(this.state.email);
     const api = "http://localhost:5000/admin/admin_login";
     fetch(api, {

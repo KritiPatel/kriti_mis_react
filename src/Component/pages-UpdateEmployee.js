@@ -1,5 +1,7 @@
 import React, { Component, useState } from "react";
 import { Button } from "react-bootstrap";
+import Header from "./header";
+import Sidebar from "./sidebar";
 
 class UpdateEmployee extends Component {
   constructor(props) {
@@ -7,36 +9,41 @@ class UpdateEmployee extends Component {
 
     // alert("update page")
     //  e.preventDefault();
-    const dataAll = this.props.history.location.state.data;
+
+    const dataAll = this.props.history.location.state.data[0];
+    // const dataAll_2 = this.props.history.location.state.e;
+    // console.log("================")
+    // console.log(dataAll)
+    // console.log(dataAll.firstName)
+    // console.log(dataAll)
+    // console.log(dataAll.employeedetails.designationIds)
     this.state = {
       firstName: dataAll.firstName,
       lastName: dataAll.lastName,
       email: dataAll.email,
+      empId: dataAll._id,
       _id: "",
-      designationIds: "",
+      designationIds: dataAll.employeedetails.designationIds,
       items: [],
-
+      optionsState: dataAll.employeedetails.designationIds,
     };
   }
 
   handleDsignation_value = (e) => {
     // alert(e.target.value + "kriti");
 
-  this.state.designationIds = e.target.value
-    console.log(e.target.value + "target_id");
+    this.state.designationIds = e.target.value;
+    // console.log(e.target.value + "target_id");
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
   componentDidMount() {
     const dataAll = this.props.history.location.state.data;
-
   }
 
- 
-
   handleChange = (data) => {
-    console.log(data);
+    // console.log(data);
     this.setState({
       [data.target.name]: data.target.value,
     });
@@ -47,7 +54,7 @@ class UpdateEmployee extends Component {
 
     // alert(this.state.firstName);
 
-    const apiUrl = "http://localhost:5000/admin/add_employee";
+    const apiUrl = "http://localhost:5000/admin/edit_profile";
     fetch(apiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -56,24 +63,25 @@ class UpdateEmployee extends Component {
         lastName: this.state.lastName,
         email: this.state.email,
         designationIds: this.state.designationIds,
+        
       }),
     })
       .then((response) => response.json())
 
       .then((res) => {
-        console.log(res);
-        console.log(res.firstName);
+        // console.log(res);
+        // console.log(res.firstName);
+
         this.setState({
           items: res.data,
           DataisLoaded: true,
         });
 
-
         // ,
         // []
       });
-      let path = "emplist";
-      this.props.history.push(path);
+    let path = "emplist";
+    this.props.history.push(path);
   };
 
   componentDidMount() {
@@ -92,29 +100,26 @@ class UpdateEmployee extends Component {
     })
       .then((response) => response.json())
       .then((res) => {
-        console.log("hhello kriti");
         // console.log(res.data.designation._id);
         // console.log(res.data);
-        console.log(res.data);
-        console.log(res.data.designation);
+        // console.log(res.data);
+        //  console.log(res.data.designation);
 
         // console.log(this.state.companyId);
         this.setState({
           items: res.data.designation,
         });
-       
-      },[]);
+      }, []);
   }
 
-
-
   render() {
-    const { firstName, lastName, email, apicall, item ,items} = this.state;
-
+    // var object = JSON.parse(localStorage.getItem('userobject'))
+    const { firstName, lastName, email, apicall, item, items, optionsState } =
+      this.state;
+  
     return (
-    <div>
-
-<div className="reglinks">
+      <div>
+        <div className="reglinks">
           <meta charSet="utf-8" />
           <meta
             content="width=device-width, initial-scale=1.0"
@@ -156,6 +161,8 @@ class UpdateEmployee extends Component {
           <link href="assets/css/style.css" rel="stylesheet" />
         </div>
 
+        <Header></Header>
+        <Sidebar></Sidebar>
         <main>
           <div className="container">
             <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -246,7 +253,9 @@ class UpdateEmployee extends Component {
                             <label htmlFor="yourEmail" className="form-label">
                               Select Desgination
                             </label>
+
                             <select
+                              value={optionsState}
                               className="form-control col-md-3"
                               onChange={this.handleDsignation_value}
                             >
@@ -283,10 +292,10 @@ class UpdateEmployee extends Component {
                           </div>
                           <div className="col-12">
                             <Button
-                              // onClick={this.apicall}
+                              onClick={this.apicall}
                               className="btn btn-primary w-100"
                               type="submit"
-                              onClick={this.routeChange}
+                              // onClick={this.routeChange}
                               //  onClick={this.get_data}
                               // onClick={this.get_detail.bind(this, item._id)}
                             >
@@ -322,10 +331,7 @@ class UpdateEmployee extends Component {
         <script src="assets/vendor/php-email-form/validate.js"></script>
 
         {/* <script src="assets/js/main.js"></script> */}
-     
-
-    </div>
-       
+      </div>
     );
   }
 }

@@ -10,6 +10,8 @@ import Profilepage from "./Component/pages-profile";
 import EmployeeList from "./Component/pages-employeeList"
 import AddEmployee from "./Component/pages-AddEmployee";
 import  UpdateEmployee from "./Component/pages-UpdateEmployee"
+import Profile_ChangePasssword from "./Component/profile_changepassword"
+import Profile_Edit from "./Component/profile_EdirProfile"
 
 
 // import ‘./App.css’;
@@ -58,7 +60,14 @@ function App() {
         </Switch>  
         <Switch>
       <Route exact path="/UpdateEmp" component={UpdateEmployee} />
-        </Switch>   
+        </Switch> 
+        <Switch>
+      <Route exact path="/changePassword" component={Profile_ChangePasssword} />
+        </Switch> 
+        <Switch>
+      <Route exact path="/EditProfile" component={Profile_Edit} />
+        </Switch> 
+         
       </Router>
       
   
