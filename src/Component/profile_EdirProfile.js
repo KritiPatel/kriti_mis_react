@@ -30,9 +30,46 @@ class Profile_Edit extends Component {
     let path = "changePassword";
     this.props.history.push(path);
   };
+
+  apicall = (e) => {
+    e.preventDefault();
+
+    // alert(this.state.firstName);
+
+    const apiUrl = "http://localhost:5000/admin/edit_profile";
+    fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        designationIds: this.state.designationIds,
+        
+      }),
+    })
+      .then((response) => response.json())
+
+      .then((res) => {
+        // console.log(res);
+        // console.log(res.firstName);
+
+        this.setState({
+          items: res.data,
+          DataisLoaded: true,
+        });
+
+        // ,
+        // []
+      });
+    let path = "emplist";
+    this.props.history.push(path);
+  };
+
+
   render() {
     var object = JSON.parse(localStorage.getItem('userobject'))
-    console.log(object)
+    // console.log(object)
 
     const {firstName,lastName,companyId,designationIds,country,address,phoneNumber,email,birthDate} = this.state
     return (
@@ -107,7 +144,7 @@ class Profile_Edit extends Component {
                       alt="Profile"
                       className="rounded-circle"
                     />
-                    <h2>Kevin Anderson</h2>
+                    <h2>{object.firstName}{object.lastName}</h2>
                     <h3>Web Designer</h3>
                     <div className="social-links mt-2">
                       <a href="#" className="twitter">
@@ -206,48 +243,61 @@ class Profile_Edit extends Component {
 
                           
                             <div className="row mb-3">  
-                          <label for="fullName" className="col-md-4 col-lg-3 col-form-label" >Full Name</label>
+                          <label for="fullName" className="col-md-4 col-lg-3 col-form-label" >First Name</label>
                           <div className="col-md-8 col-lg-9">
-                            <input name="fullName" type="text" className="form-control" id="fullName" value={object.firstName}></input>
+                            <input name="firstName" type="text" className="form-control" id="firstName" defaultValue={object.firstName}></input>
+                          </div>
+                        </div>
+                        <div className="row mb-3">  
+                          <label for="fullName" className="col-md-4 col-lg-3 col-form-label" >Last Name</label>
+                          <div className="col-md-8 col-lg-9">
+                            <input name="lastName" type="text" className="form-control" id="lastName" defaultValue={object.lastName}></input>
                           </div>
                         </div>
                         <div className="row mb-3">
                           <label for="company" className="col-md-4 col-lg-3 col-form-label">Company</label>
                           <div className="col-md-8 col-lg-9">
-                            <input name="company" type="text" className="form-control" id="company" value={object.employeedetails.companyId}/>
+                            <input name="company" type="text" className="form-control" id="company" defaultValue={object.employeedetails.companyId}/>
                           </div>
                         </div>
                         <div className="row mb-3">
                           <label for="Job" className="col-md-4 col-lg-3 col-form-label">Desgination</label>
                           <div className="col-md-8 col-lg-9">
-                            <input name="job" type="text" className="form-control" id="Job" value="Web Designer"/>
+                            <input name="job" type="text" className="form-control" id="Designation" defaultValue={object.employeedetails.designationIds}/>
                           </div>
                         </div>
                         <div className="row mb-3">
                           <label for="Country" className="col-md-4 col-lg-3 col-form-label">Country</label>
                           <div className="col-md-8 col-lg-9">
-                            <input name="country" type="text" className="form-control" id="Country" value="USA"/>
+                            <input name="country" type="text" className="form-control" id="Country" defaultValue={object.employeeaddressesData.country}/>
                           </div>
                         </div>
                         <div className="row mb-3">
                           <label for="Address" className="col-md-4 col-lg-3 col-form-label">Address</label>
                           <div className="col-md-8 col-lg-9">
-                            <input name="address" type="text" className="form-control" id="Address" value="A108 Adam Street, New York, NY 535022"/>
+                            <input name="address" type="text" className="form-control" id="Address" defaultValue={object.employeeaddressesData.address}/>
                           </div>
                         </div>
                         <div className="row mb-3">
                           <label for="Phone" className="col-md-4 col-lg-3 col-form-label">Phone</label>
                           <div className="col-md-8 col-lg-9">
-                            <input name="phone" type="text" className="form-control" id="Phone" value="(436) 486-3538 x29071"/>
+                            <input name="phone" type="text" className="form-control" id="Phone" defaultValue= {object.employeedetails.phoneNumber}/>
                           </div>
                         </div>
     
                         <div className="row mb-3">
                           <label for="Email" className="col-md-4 col-lg-3 col-form-label">Email</label>
                           <div className="col-md-8 col-lg-9">
-                            <input name="email" type="email" className="form-control" id="Email" value="k.anderson@example.com"/>
+                            <input name="email" type="email" className="form-control" id="Email" defaultValue={object.email}/>
                           </div>
                         </div>
+                        <div className="row mb-3">
+                          <label for="Email" className="col-md-4 col-lg-3 col-form-label">Email</label>
+                          <div className="col-md-8 col-lg-9">
+                            <input name="birthday" type="birthday" className="form-control" id="birthday" defaultValue= {object.employeedetails.birthDate}/>
+                          </div>
+                        </div>
+                      
     
                         <div className="text-center">
                           <button type="submit" className="btn btn-primary">Save Changes</button>

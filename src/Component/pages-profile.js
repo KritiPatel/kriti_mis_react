@@ -209,9 +209,15 @@ class Profilepage extends Component {
 
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label ">
-                              Full Name
+                              First Name
                             </div>
-                            <div class="col-lg-9 col-md-8">{object.firstName} {object.lastName}</div>
+                            <div class="col-lg-9 col-md-8">{object.firstName} </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">
+                              Last Name
+                            </div>
+                            <div class="col-lg-9 col-md-8">{object.lastName}</div>
                           </div>
 
                           <div class="row">

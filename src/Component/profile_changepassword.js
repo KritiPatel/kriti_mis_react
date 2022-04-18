@@ -12,17 +12,18 @@ class Profile_ChangePasssword extends Component {
     // this.routeChange = this.routeChange.bind(this);
       // get data from localStorage
     var object = JSON.parse(localStorage.getItem('userobject'))
-    console.log(object._id)
+    console.log(object._id + "sjchn")
 
 
     this.state = {
       items: [],
       // DataisLoaded: false,
-      empId: "",
+      empId: object._id,
       oldPassword: "",
       newPassword:"",
       // newPassword:"",
       confirmPassword:"",
+
     };
   }
   
@@ -48,14 +49,11 @@ class Profile_ChangePasssword extends Component {
   //   let path = "pages-profile";
   //   this.props.history.push(path);
   // }
-
-  api_change_passsword = (e) => {
+ api_change_passsword = (e) => {
     e.preventDefault();
     alert("heelooo change password api")
-    // var localStorage = JSON.parse(localStorage.getItem('userobject'))
-    
-    console.log(localStorage._id);
- // alert("change password api called")
+
+    // alert("change password api called")
  const api = "http://localhost:5000/admin/change_password";
     fetch(api, {
       method: "POST",
@@ -65,7 +63,7 @@ class Profile_ChangePasssword extends Component {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        empId: localStorage._id,
+        empId: this.state.empId,
         oldPassword: this.state.oldPassword,
         newPassword: this.state.newPassword,
         confirmPassword: this.state.confirmPassword
@@ -75,7 +73,7 @@ class Profile_ChangePasssword extends Component {
     
       .then((response) => response.json())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status) {
           this.setState({
             items: res.data,
@@ -88,6 +86,10 @@ class Profile_ChangePasssword extends Component {
 
   render() {
     const {oldPassword, newPassword, confirmPassword} = this.state
+    var object = JSON.parse(localStorage.getItem('userobject'))
+    // console.log(object)
+
+
     return (
       <>
         <div>profile pages</div>
@@ -160,7 +162,7 @@ class Profile_ChangePasssword extends Component {
                       alt="Profile"
                       className="rounded-circle"
                     />
-                    <h2>Kevin Anderson</h2>
+                    <h2>{object.firstName}{object.lastName}</h2>
                     <h3>Web Designer</h3>
                     <div className="social-links mt-2">
                       <a href="#" className="twitter">
